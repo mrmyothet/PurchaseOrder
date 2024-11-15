@@ -5,6 +5,12 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurchaseOrder.API", "PurchaseOrder.API\PurchaseOrder.API.csproj", "{F2CD83EB-A621-42B4-936E-98F7A8B2EC81}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{8E5DC4EC-EDFA-4F6B-9B01-BDF343BCE657}"
+	ProjectSection(SolutionItems) = preProject
+		db_script.sql = db_script.sql
+		insert_data.sql = insert_data.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

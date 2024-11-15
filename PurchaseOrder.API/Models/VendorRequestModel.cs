@@ -1,3 +1,14 @@
 ﻿namespace PurchaseOrder.API.Models;
 
-public class VendorRequestModel { }
+public class VendorRequestModel
+{
+    public string Name { get; set; }
+
+    public string ContactName { get; set; }
+
+    public string Phone { get; set; }
+
+    public string Email { get; set; }
+
+    public string Address { get; set; }
+}

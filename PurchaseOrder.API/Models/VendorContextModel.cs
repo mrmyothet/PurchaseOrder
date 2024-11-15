@@ -1,6 +1,6 @@
 ﻿namespace PurchaseOrder.API.Models;
 
-public class VendorResponseModel
+public class VendorContextModel
 {
     public string Id { get; set; }
 
