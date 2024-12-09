@@ -36,5 +36,10 @@ namespace PurchaseOrder.Web.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
+        public IActionResult NewVendor()
+        {
+            return View();
+        }
     }
 }
