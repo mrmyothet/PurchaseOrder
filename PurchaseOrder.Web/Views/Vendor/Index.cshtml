@@ -1,0 +1,35 @@
+﻿@model List<VendorModel>;
+
+
+<a href="/Home/NewVendor" class="btn btn-outline-dark my-3">New Vendor</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            @* <th scope="col">Id</th> *@
+            <th scope="col">Name</th>
+            <th scope="col">Contact Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                <tr>
+                    @* <th scope="row">@item.Id</th> *@
+                    <td>@item.Name</td>
+                    <td>@item.ContactName</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Email</td>
+                    <td>@item.Address</td>
+                    <td>
+                        <a class="btn btn-outline-warning" href="/Vendor/EditVendor?id=@item.Id">Edit</a>
+                        @* <a class="btn btn-outline-danger" href="/Vendor/DeleteVendor?id=@item.Id">Delete</a> *@
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
