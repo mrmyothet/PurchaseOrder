@@ -9,8 +9,8 @@
             @* <th scope="col">Id</th> *@
             <th>Name</th>
             <th>Description</th>
-            <th align="right">Price</th>
-            <th align="right">Quantity</th>
+            <th class="text-end">Price</th>
+            <th class="text-end">Quantity</th>
             <th></th>
         </tr>
     </thead>
@@ -21,9 +21,9 @@
                 @* <th scope="row">@item.Id</th> *@
                 <td>@item.Name</td>
                 <td>@item.Description</td>
-                <td align="right">@item.Price</td>
-                <td align="right">@item.Quantity</td>
-                <td>
+                <td class="text-end">@item.Price</td>
+                <td class="text-end">@item.Quantity</td>
+                <td class="text-center">
                     <a class="btn btn-outline-warning" href="/Stock/EditStock?id=@item.Id">Edit</a>
                     @* <a class="btn btn-outline-danger" href="/Stock/DeleteStock?id=@item.Id">Delete</a> *@
                 </td>
