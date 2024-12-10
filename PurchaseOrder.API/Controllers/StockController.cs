@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PurchaseOrder.API.Models;
 using PurchaseOrder.API.Services;
 
 namespace PurchaseOrder.API.Controllers;
@@ -19,6 +20,13 @@ public class StockController : ControllerBase
     public async Task<IActionResult> GetStocksAsync()
     {
         var model = await _stockService.GetAllStocksAsync();
+        return Ok(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> SaveAsync(StockRequestModel requestModel)
+    {
+        var model = await _stockService.CreateStockAsync(requestModel);
         return Ok(model);
     }
 }

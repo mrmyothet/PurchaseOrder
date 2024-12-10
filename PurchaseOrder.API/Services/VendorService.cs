@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
 using PurchaseOrder.API.Models;
+using PurchaseOrder.API.Utilities;
 
 namespace PurchaseOrder.API.Services;
 
@@ -40,7 +41,7 @@ public class VendorService
         {
             var item = new VendorContextModel()
             {
-                Id = Generate32BitString(),
+                Id = Utils.Generate32BitString(),
                 Name = model.Name,
                 ContactName = model.ContactName,
                 Phone = model.Phone,
@@ -69,12 +70,5 @@ public class VendorService
             _logger.LogError(message);
             return Result<VendorResponseModel>.Failure(message);
         }
-    }
-
-    public string Generate32BitString()
-    {
-        byte[] buffer = new byte[16];
-        RandomNumberGenerator.Fill(buffer);
-        return BitConverter.ToString(buffer).Replace("-", "");
     }
 }

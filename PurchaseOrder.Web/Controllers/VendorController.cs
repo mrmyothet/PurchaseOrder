@@ -47,9 +47,9 @@ public class VendorController : Controller
     }
 
     [ActionName("Save")]
-    public async Task<IActionResult> SaveAsync(VendorModel newVendor)
+    public async Task<IActionResult> SaveAsync(VendorModel item)
     {
-        string jsonStr = JsonConvert.SerializeObject(newVendor);
+        string jsonStr = JsonConvert.SerializeObject(item);
         HttpContent content = new StringContent(jsonStr, Encoding.UTF8, Application.Json);
 
         HttpResponseMessage response = await _httpClient.PostAsync("/api/vendor", content);
