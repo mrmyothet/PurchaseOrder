@@ -7,8 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurchaseOrder.API", "Purcha
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{8E5DC4EC-EDFA-4F6B-9B01-BDF343BCE657}"
 	ProjectSection(SolutionItems) = preProject
-		db_script.sql = db_script.sql
-		insert_data.sql = insert_data.sql
+		Script.sql = Script.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurchaseOrder.Web", "PurchaseOrder.Web\PurchaseOrder.Web.csproj", "{7F4E95C9-F099-41BB-B31A-976280754D2D}"

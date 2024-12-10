@@ -5,27 +5,27 @@ using PurchaseOrder.Web.Models;
 
 namespace PurchaseOrder.Web.Controllers;
 
-public class VendorController : Controller
+public class StockController : Controller
 {
     private readonly HttpClient _httpClient;
 
-    public VendorController(IHttpClientFactory _httpClientFactory)
+    public StockController(IHttpClientFactory _httpClientFactory)
     {
         _httpClient = _httpClientFactory.CreateClient("HttpClient");
     }
 
     public async Task<IActionResult> IndexAsync()
     {
-        List<VendorModel> lst = new List<VendorModel>();
+        List<StockModel> lst = new List<StockModel>();
         try
         {
-            HttpResponseMessage response = await _httpClient.GetAsync("/api/vendor");
+            HttpResponseMessage response = await _httpClient.GetAsync("/api/stock");
             //response.EnsureSuccessStatusCode();
 
             if (response.IsSuccessStatusCode)
             {
                 string jsonStr = await response.Content.ReadAsStringAsync();
-                var apiResponse = jsonStr.ToObject<VendorResponseModel>();
+                var apiResponse = jsonStr.ToObject<StockResponseModel>();
                 lst = apiResponse.Data;
             }
 
@@ -37,7 +37,7 @@ public class VendorController : Controller
         }
     }
 
-    public IActionResult NewVendor()
+    public IActionResult NewStock()
     {
         return View();
     }
