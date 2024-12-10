@@ -16,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.AddVendorService();
+builder.AddStockService();
 
 var app = builder.Build();
 

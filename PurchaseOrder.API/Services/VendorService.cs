@@ -17,7 +17,7 @@ public class VendorService
 
     public async Task<Result<List<VendorResponseModel>>> GetAllVendorsAsync()
     {
-        var lst = await _appDbContext.Vendor.ToListAsync();
+        var lst = await _appDbContext.Vendors.ToListAsync();
 
         var model = lst.Select(v => new VendorResponseModel
             {

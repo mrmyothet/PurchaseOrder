@@ -3,19 +3,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PurchaseOrder.API.Models;
 
-[Table("Vendor")]
-public class VendorContextModel
+[Table("Stock")]
+public class StockContextModel
 {
     [Key]
     public string Id { get; set; }
 
     public string Name { get; set; }
 
-    public string ContactName { get; set; }
+    public string Description { get; set; }
 
-    public string Phone { get; set; }
+    public decimal Price { get; set; }
 
-    public string Email { get; set; }
-
-    public string Address { get; set; }
+    public int Quantity { get; set; }
 }

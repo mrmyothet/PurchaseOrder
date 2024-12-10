@@ -8,5 +8,7 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions options)
         : base(options) { }
 
-    public DbSet<VendorContextModel> Vendor { get; set; }
+    public DbSet<VendorContextModel> Vendors { get; set; }
+
+    public DbSet<StockContextModel> Stocks { get; set; }
 }
