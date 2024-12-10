@@ -1,7 +1,7 @@
 ﻿@model List<StockModel>;
 
 <img src="/icons/Stock.svg" width="100" height="50" />
-<a href="/Stock/NewStock" class="btn btn-outline-dark my-3">New Stock</a>
+<a href="/Stock/New" class="btn btn-outline-dark my-3">New Stock</a>
 
 <table class="table table-striped">
     <thead>
@@ -24,8 +24,8 @@
                 <td class="text-end">@item.Price</td>
                 <td class="text-end">@item.Quantity</td>
                 <td class="text-center">
-                    <a class="btn btn-outline-warning" href="/Stock/EditStock?id=@item.Id">Edit</a>
-                    @* <a class="btn btn-outline-danger" href="/Stock/DeleteStock?id=@item.Id">Delete</a> *@
+                    <a class="btn btn-outline-warning" href="/Stock/Edit?id=@item.Id">Edit</a>
+                    @* <a class="btn btn-outline-danger" href="/Stock/Delete?id=@item.Id">Delete</a> *@
                 </td>
             </tr>
         }

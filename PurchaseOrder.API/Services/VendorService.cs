@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore;
 using PurchaseOrder.API.Models;
 
 namespace PurchaseOrder.API.Services;
@@ -31,5 +32,49 @@ public class VendorService
             .ToList();
 
         return Result<List<VendorResponseModel>>.Success(model);
+    }
+
+    public async Task<Result<VendorResponseModel>> CreateVendorAsync(VendorRequestModel model)
+    {
+        try
+        {
+            var item = new VendorContextModel()
+            {
+                Id = Generate32BitString(),
+                Name = model.Name,
+                ContactName = model.ContactName,
+                Phone = model.Phone,
+                Email = model.Email,
+                Address = model.Address,
+            };
+
+            _appDbContext.Vendors.Add(item);
+            await _appDbContext.SaveChangesAsync();
+
+            var response = new VendorResponseModel()
+            {
+                Id = item.Id,
+                Name = model.Name,
+                ContactName = model.ContactName,
+                Phone = model.Phone,
+                Email = model.Email,
+                Address = model.Address,
+            };
+
+            return Result<VendorResponseModel>.Success(response);
+        }
+        catch (Exception ex)
+        {
+            string message = "An error occurred when creating vendor " + ex.ToString();
+            _logger.LogError(message);
+            return Result<VendorResponseModel>.Failure(message);
+        }
+    }
+
+    public string Generate32BitString()
+    {
+        byte[] buffer = new byte[16];
+        RandomNumberGenerator.Fill(buffer);
+        return BitConverter.ToString(buffer).Replace("-", "");
     }
 }

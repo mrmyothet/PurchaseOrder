@@ -1,7 +1,7 @@
 ﻿@model List<VendorModel>;
 
 <img src="/icons/Vendor.svg" width="100" height="50" />
-<a href="/Vendor/NewVendor" class="btn btn-outline-dark my-3">New Vendor</a>
+<a href="/Vendor/New" class="btn btn-outline-dark my-3">New Vendor</a>
 
 <table class="table table-striped">
     <thead>
@@ -26,8 +26,8 @@
                     <td>@item.Email</td>
                     <td>@item.Address</td>
                     <td>
-                        <a class="btn btn-outline-warning" href="/Vendor/EditVendor?id=@item.Id">Edit</a>
-                        @* <a class="btn btn-outline-danger" href="/Vendor/DeleteVendor?id=@item.Id">Delete</a> *@
+                        <a class="btn btn-outline-warning" href="/Vendor/Edit?id=@item.Id">Edit</a>
+                        @* <a class="btn btn-outline-danger" href="/Vendor/Delete?id=@item.Id">Delete</a> *@
                     </td>
                 </tr>
         }

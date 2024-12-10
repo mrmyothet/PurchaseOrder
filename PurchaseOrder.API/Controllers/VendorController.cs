@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PurchaseOrder.API.Models;
 using PurchaseOrder.API.Services;
 
 namespace PurchaseOrder.API.Controllers;
@@ -20,5 +21,12 @@ public class VendorController : ControllerBase
     {
         var model = await _vendorService.GetAllVendorsAsync();
         return Ok(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateVendorAsync(VendorRequestModel requestModel)
+    {
+        var responseModel = await _vendorService.CreateVendorAsync(requestModel);
+        return Ok(responseModel);
     }
 }
