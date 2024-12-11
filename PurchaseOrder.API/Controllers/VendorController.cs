@@ -29,4 +29,21 @@ public class VendorController : ControllerBase
         var responseModel = await _vendorService.CreateVendorAsync(requestModel);
         return Ok(responseModel);
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateVendorAsync(string Id, VendorRequestModel requestModel)
+    {
+        Result<VendorResponseModel> responseModel = await _vendorService.UpdateVendorAsync(
+            Id,
+            requestModel
+        );
+        return Ok(responseModel);
+    }
+
+    [HttpGet("{Id}")]
+    public async Task<IActionResult> GetVendorAsync(string Id)
+    {
+        var model = await _vendorService.GetVendorAsync(Id);
+        return Ok(model);
+    }
 }

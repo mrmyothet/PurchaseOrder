@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -28,7 +29,7 @@ public class VendorController : Controller
             if (response.IsSuccessStatusCode)
             {
                 string jsonStr = await response.Content.ReadAsStringAsync();
-                var apiResponse = jsonStr.ToObject<VendorResponseModel>();
+                var apiResponse = jsonStr.ToObject<VendorListResponseModel>();
                 lst = apiResponse.Data;
             }
 
@@ -60,5 +61,30 @@ public class VendorController : Controller
         }
 
         return RedirectToAction("Index");
+    }
+
+    [ActionName("Edit")]
+    public async Task<IActionResult> EditAsync(string Id)
+    {
+        var item = new VendorModel();
+        try
+        {
+            HttpResponseMessage response = await _httpClient.GetAsync($"api/vendor/{Id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonStr = await response.Content.ReadAsStringAsync();
+                var apiResponse = jsonStr.ToObject<VendorItemResponseModel>();
+                item = apiResponse.Data;
+
+                return View(item);
+            }
+
+            return View(item);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 }

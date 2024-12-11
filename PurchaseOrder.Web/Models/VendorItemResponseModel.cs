@@ -1,6 +1,6 @@
 ﻿namespace PurchaseOrder.Web.Models;
 
-public class VendorListResponseModel
+public class VendorItemResponseModel
 {
     public bool IsSuccess { get; set; }
 
@@ -8,5 +8,5 @@ public class VendorListResponseModel
 
     public bool IsValidationError { get; set; }
 
-    public List<VendorModel> Data { get; set; }
+    public VendorModel Data { get; set; }
 }
