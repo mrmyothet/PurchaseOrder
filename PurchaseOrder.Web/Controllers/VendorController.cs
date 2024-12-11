@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -81,6 +82,26 @@ public class VendorController : Controller
             }
 
             return View(item);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    [ActionName("Update")]
+    public async Task<IActionResult> UpdateAsync(string Id, VendorModel model)
+    {
+        try
+        {
+            string jsonString = JsonConvert.SerializeObject(model);
+            HttpContent content = new StringContent(jsonString, Encoding.UTF8, Application.Json);
+
+            var response = await _httpClient.PutAsync($"api/vendor/{Id}", content);
+            if (!response.IsSuccessStatusCode)
+                return RedirectToAction("Edit");
+
+            return Redirect("/vendor");
         }
         catch (Exception ex)
         {
