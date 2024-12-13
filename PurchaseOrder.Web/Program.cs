@@ -1,3 +1,5 @@
+using PurchaseOrder.Web.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,9 +9,11 @@ builder.Services.AddHttpClient(
     "HttpClient",
     options =>
     {
-        options.BaseAddress = new Uri("https://localhost:7104");
+        options.BaseAddress = new Uri(builder.Configuration["ApiUrl"]!);
     }
 );
+
+builder.Services.AddScoped<HttpClientService>();
 
 var app = builder.Build();
 
