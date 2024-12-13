@@ -1,12 +1,17 @@
-﻿using Newtonsoft.Json;
-using System.Text;
+﻿using System.Text;
+using Newtonsoft.Json;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace PurchaseOrder.Web.Services;
 
 public class HttpClientService
 {
-    public async Task<T> ExecuteAsync<T>( HttpClient client, string endpoint, HttpMethod httpMethod, object? requestModel = null)
+    public async Task<T> ExecuteAsync<T>(
+        HttpClient client,
+        string endpoint,
+        HttpMethod httpMethod,
+        object? requestModel = null
+    )
     {
         HttpResponseMessage response = null!;
         HttpContent content = null!;
