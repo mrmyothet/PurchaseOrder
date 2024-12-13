@@ -61,4 +61,17 @@ public class StockController : Controller
 
         return RedirectToAction("Index");
     }
+
+    [ActionName("SaveV1")]
+    public async Task<IActionResult> SaveAsyncV1(StockModel item)
+    {
+        HttpResponseMessage response = await _httpClient.PostAsJsonAsync("/api/stock", item);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return View("New");
+        }
+
+        return RedirectToAction("Index");
+    }
 }
