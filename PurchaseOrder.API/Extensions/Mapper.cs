@@ -13,7 +13,7 @@ public static class Mapper
             Description = dataModel.Description,
             Name = dataModel.Name,
             Price = dataModel.Price,
-            Quantity = dataModel.Quantity
+            Quantity = dataModel.Quantity,
         };
     }
 
@@ -25,7 +25,7 @@ public static class Mapper
             Name = requestModel.Name,
             Description = requestModel.Description,
             Price = requestModel.Price,
-            Quantity = requestModel.Quantity
+            Quantity = requestModel.Quantity,
         };
     }
 }
