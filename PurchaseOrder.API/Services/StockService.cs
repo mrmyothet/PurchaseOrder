@@ -24,13 +24,13 @@ public class StockService
             var lst = await _appDbContext.Stocks.ToListAsync();
 
             var model = lst.Select(item => new StockResponseModel
-            {
-                Id = item.Id,
-                Name = item.Name,
-                Description = item.Description,
-                Price = item.Price,
-                Quantity = item.Quantity
-            })
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Description = item.Description,
+                    Price = item.Price,
+                    Quantity = item.Quantity,
+                })
                 .ToList();
 
             result = Result<List<StockResponseModel>>.Success(model);
@@ -40,7 +40,7 @@ public class StockService
             result = Result<List<StockResponseModel>>.Failure(ex);
         }
 
-    result:
+        result:
         return result;
     }
 
@@ -55,7 +55,7 @@ public class StockService
                 Name = model.Name,
                 Description = model.Description,
                 Price = model.Price,
-                Quantity = model.Quantity
+                Quantity = model.Quantity,
             };
 
             await _appDbContext.Stocks.AddAsync(item);
@@ -67,20 +67,20 @@ public class StockService
                 Name = model.Name,
                 Description = model.Description,
                 Price = model.Price,
-                Quantity = model.Quantity
+                Quantity = model.Quantity,
             };
 
-            result =  Result<StockResponseModel>.Success(response);
+            result = Result<StockResponseModel>.Success(response);
         }
         catch (Exception ex)
         {
             string message = "An error occurred when creating Stock " + ex.ToString();
             _logger.LogError(message);
 
-            result =  Result<StockResponseModel>.Failure(message);
+            result = Result<StockResponseModel>.Failure(message);
         }
 
-    result:
+        result:
         return result;
     }
 }
