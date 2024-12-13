@@ -41,25 +41,17 @@ public class StockService
         Result<StockResponseModel> result;
         try
         {
-            var item = new StockContextModel()
-            {
-                Id = Utils.Generate32BitString(),
-                Name = model.Name,
-                Description = model.Description,
-                Price = model.Price,
-                Quantity = model.Quantity,
-            };
-
-            await _appDbContext.Stocks.AddAsync(item);
+            var entity = model.ToEntity();
+            await _appDbContext.Stocks.AddAsync(entity);
             await _appDbContext.SaveChangesAsync();
 
             var response = new StockResponseModel()
             {
-                Id = item.Id,
+                Id = entity.Id,
                 Name = model.Name,
                 Description = model.Description,
                 Price = model.Price,
-                Quantity = model.Quantity,
+                Quantity = model.Quantity
             };
 
             result = Result<StockResponseModel>.Success(response);
