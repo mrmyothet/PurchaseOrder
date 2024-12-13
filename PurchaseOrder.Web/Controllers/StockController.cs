@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using System.Text;
+﻿using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PurchaseOrder.Web.Extensions;
