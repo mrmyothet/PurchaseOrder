@@ -3,14 +3,8 @@
 public class Result<T>
 {
     public bool IsSuccess { get; private set; }
-    public bool IsError
-    {
-        get { return !IsSuccess; }
-    }
-    public bool IsValidationError
-    {
-        get { return ResultType == EnumResultType.ValidationError; }
-    }
+    public bool IsError => !IsSuccess;
+    public bool IsValidationError => ResultType == EnumResultType.ValidationError;
     private EnumResultType ResultType { get; set; }
     public T? Data { get; private set; }
     public string? Message { get; private set; }

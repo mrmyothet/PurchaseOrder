@@ -20,16 +20,15 @@ public class VendorService
     public async Task<Result<List<VendorResponseModel>>> GetAllVendorsAsync()
     {
         var lst = await _appDbContext.Vendors.ToListAsync();
-
         var model = lst.Select(v => new VendorResponseModel
-            {
-                Id = v.Id,
-                Name = v.Name,
-                ContactName = v.ContactName,
-                Phone = v.Phone,
-                Email = v.Email,
-                Address = v.Address,
-            })
+        {
+            Id = v.Id,
+            Name = v.Name,
+            ContactName = v.ContactName,
+            Phone = v.Phone,
+            Email = v.Email,
+            Address = v.Address,
+        })
             .ToList();
 
         return Result<List<VendorResponseModel>>.Success(model);

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using PurchaseOrder.API.Extensions;
 using PurchaseOrder.API.Models;
 using PurchaseOrder.API.Services;
 
@@ -20,13 +22,13 @@ public class StockController : ControllerBase
     public async Task<IActionResult> GetStocksAsync()
     {
         var model = await _stockService.GetAllStocksAsync();
-        return Ok(model);
+        return Ok(model.ToJson());
     }
 
     [HttpPost]
     public async Task<IActionResult> SaveAsync(StockRequestModel requestModel)
     {
         var model = await _stockService.CreateStockAsync(requestModel);
-        return Ok(model);
+        return Ok(model.ToJson());
     }
 }
