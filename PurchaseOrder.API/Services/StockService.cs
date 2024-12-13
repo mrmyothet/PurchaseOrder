@@ -50,7 +50,7 @@ public class StockService
                 Name = model.Name,
                 Description = model.Description,
                 Price = model.Price,
-                Quantity = model.Quantity
+                Quantity = model.Quantity,
             };
 
             result = Result<StockResponseModel>.Success(response);
