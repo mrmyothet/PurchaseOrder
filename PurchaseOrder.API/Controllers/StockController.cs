@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 using PurchaseOrder.API.Extensions;
 using PurchaseOrder.API.Models;
 using PurchaseOrder.API.Services;
