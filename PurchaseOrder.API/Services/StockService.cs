@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PurchaseOrder.API.Extensions;
 using PurchaseOrder.API.Models;
 using PurchaseOrder.API.Utilities;
 
@@ -22,16 +23,7 @@ public class StockService
         try
         {
             var lst = await _appDbContext.Stocks.ToListAsync();
-
-            var model = lst.Select(item => new StockResponseModel
-                {
-                    Id = item.Id,
-                    Name = item.Name,
-                    Description = item.Description,
-                    Price = item.Price,
-                    Quantity = item.Quantity,
-                })
-                .ToList();
+            var model = lst.Select(item => item.ToDto()).ToList();
 
             result = Result<List<StockResponseModel>>.Success(model);
         }
@@ -40,7 +32,7 @@ public class StockService
             result = Result<List<StockResponseModel>>.Failure(ex);
         }
 
-        result:
+    result:
         return result;
     }
 
@@ -80,7 +72,7 @@ public class StockService
             result = Result<StockResponseModel>.Failure(message);
         }
 
-        result:
+    result:
         return result;
     }
 }
