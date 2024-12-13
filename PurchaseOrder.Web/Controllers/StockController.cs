@@ -14,7 +14,10 @@ public class StockController : Controller
     private readonly HttpClient _httpClient;
     internal readonly HttpClientService _httpClientService;
 
-    public StockController(IHttpClientFactory _httpClientFactory, HttpClientService httpClientService)
+    public StockController(
+        IHttpClientFactory _httpClientFactory,
+        HttpClientService httpClientService
+    )
     {
         _httpClient = _httpClientFactory.CreateClient("HttpClient");
         _httpClientService = httpClientService;
@@ -25,10 +28,13 @@ public class StockController : Controller
         List<StockModel> lst = new List<StockModel>();
         try
         {
-            StockResponseModel? result = await _httpClientService
-                .ExecuteAsync<StockResponseModel>(_httpClient, "/api/stock", HttpMethod.GET);
+            StockResponseModel? result = await _httpClientService.ExecuteAsync<StockResponseModel>(
+                _httpClient,
+                "/api/stock",
+                HttpMethod.GET
+            );
             lst = result.Data;
-            
+
             return View(lst);
         }
         catch (Exception ex)
