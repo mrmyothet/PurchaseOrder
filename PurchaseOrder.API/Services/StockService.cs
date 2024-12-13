@@ -18,9 +18,12 @@ public class StockService
 
     public async Task<Result<List<StockResponseModel>>> GetAllStocksAsync()
     {
-        var lst = await _appDbContext.Stocks.ToListAsync();
+        Result<List<StockResponseModel>> result;
+        try
+        {
+            var lst = await _appDbContext.Stocks.ToListAsync();
 
-        var model = lst.Select(item => new StockResponseModel
+            var model = lst.Select(item => new StockResponseModel
             {
                 Id = item.Id,
                 Name = item.Name,
@@ -28,13 +31,22 @@ public class StockService
                 Price = item.Price,
                 Quantity = item.Quantity
             })
-            .ToList();
+                .ToList();
 
-        return Result<List<StockResponseModel>>.Success(model);
+            result = Result<List<StockResponseModel>>.Success(model);
+        }
+        catch (Exception ex)
+        {
+            result = Result<List<StockResponseModel>>.Failure(ex);
+        }
+
+    result:
+        return result;
     }
 
     public async Task<Result<StockResponseModel>> CreateStockAsync(StockRequestModel model)
     {
+        Result<StockResponseModel> result;
         try
         {
             var item = new StockContextModel()
@@ -46,7 +58,7 @@ public class StockService
                 Quantity = model.Quantity
             };
 
-            _appDbContext.Stocks.Add(item);
+            await _appDbContext.Stocks.AddAsync(item);
             await _appDbContext.SaveChangesAsync();
 
             var response = new StockResponseModel()
@@ -58,13 +70,17 @@ public class StockService
                 Quantity = model.Quantity
             };
 
-            return Result<StockResponseModel>.Success(response);
+            result =  Result<StockResponseModel>.Success(response);
         }
         catch (Exception ex)
         {
             string message = "An error occurred when creating Stock " + ex.ToString();
             _logger.LogError(message);
-            return Result<StockResponseModel>.Failure(message);
+
+            result =  Result<StockResponseModel>.Failure(message);
         }
+
+    result:
+        return result;
     }
 }
