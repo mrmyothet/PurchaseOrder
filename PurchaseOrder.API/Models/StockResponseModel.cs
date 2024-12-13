@@ -1,15 +1,14 @@
-﻿namespace PurchaseOrder.API.Models
+﻿namespace PurchaseOrder.API.Models;
+
+public class StockResponseModel
 {
-    public class StockResponseModel
-    {
-        public string Id { get; set; }
+    public string Id { get; set; }
 
-        public string Name { get; set; }
+    public string Name { get; set; }
 
-        public string Description { get; set; }
+    public string Description { get; set; }
 
-        public decimal Price { get; set; }
+    public decimal Price { get; set; }
 
-        public int Quantity { get; set; }
-    }
+    public int Quantity { get; set; }
 }
