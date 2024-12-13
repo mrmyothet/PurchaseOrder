@@ -43,5 +43,5 @@ public enum EnumResultType
     None,
     Success,
     Failure,
-    ValidationError
+    ValidationError,
 }
