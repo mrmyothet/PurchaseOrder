@@ -1,17 +1,16 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 
-namespace PurchaseOrder.API.Handlers
+namespace PurchaseOrder.API.Handlers;
+
+public class GlobalExceptionHandler : IExceptionHandler
 {
-    public class GlobalExceptionHandler : IExceptionHandler
+    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
-        public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
-        {
-            Result<object> result = Result<object>.Failure(exception.Message);
-            httpContext.Response.StatusCode = 200;
+        Result<object> result = Result<object>.Failure(exception.Message);
+        httpContext.Response.StatusCode = 200;
 
-            await httpContext.Response.WriteAsJsonAsync(result, cancellationToken: cancellationToken);
+        await httpContext.Response.WriteAsJsonAsync(result, cancellationToken: cancellationToken);
 
-            return true;
-        }
+        return true;
     }
 }
